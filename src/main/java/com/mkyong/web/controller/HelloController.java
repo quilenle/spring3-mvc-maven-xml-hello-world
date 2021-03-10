@@ -1,7 +1,9 @@
 package com.mkyong.web.controller;
 
+import com.mkyong.web.exception.NameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +29,11 @@ public class HelloController {
 
 		return model;
 
+	}
+
+	@GetMapping("/hi/{name:.+}")
+	public ModelAndView hi(@PathVariable String name) {
+		throw new NameNotFoundException(name);
 	}
 
 }
